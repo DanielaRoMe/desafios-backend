@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "title": "NANA Tomo 1",
+    "description": "Manga creado por Ai Yazawa",
+    "price": 480,
+    "thumbnail": "NANA-tomo1.jpg",
+    "code": "1111",
+    "stock": 5
+  },
+  {
+    "id": 2,
+    "title": "Fullmetal Alchemist Tomo 1",
+    "description": "Manga creado por Hiromu Arakawa",
+    "price": 480,
+    "thumbnail": "FMA-tomo1.jpg",
+    "code": "7894",
+    "stock": 7
+  },
+  {
+    "id": 3,
+    "title": "NANA Tomo 5",
+    "description": "Manga creado por Ai Yazawa",
+    "price": 480,
+    "thumbnail": "NANA-tomo5.jpg",
+    "code": "1125",
+    "stock": 8
+  }
+]
