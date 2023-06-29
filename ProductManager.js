@@ -71,12 +71,13 @@ class ProductManager {
 
   getProducts () {
 
-    fs.promises.readFile(this.path, "utf-8")
+    return fs.promises.readFile(this.path, "utf-8")
+
     .then((content) => {
 
       this.products = JSON.parse(content);
-      
-      return console.log(this.products);
+      return this.products
+
     })
     .catch (()=> {
       return console.log(this.products);
@@ -86,18 +87,26 @@ class ProductManager {
 
   getProductById (id) {
 
-    fs.promises.readFile(this.path, "utf-8")
+    return fs.promises.readFile(this.path, "utf-8")
     .then ((content) => {
 
       this.products = JSON.parse(content);
 
       const productById = this.products.find(el => el.id === id);
 
-      productById ? console.log(productById) : console.log(`ERROR: Product: ${id} - Not Found`);
+      if (!productById){
+        const msj = `ERROR: Product: ${id} - Not Found`
+        return msj;
 
+      } else {
+        return productById;
+
+      }
+      
     })
     .catch((err) => {
-      console.log(`El archivo "${this.path}" no existe`);
+      console.log(`El archivo "${this.path}" no existe`); 
+      return err
     })
 
       
@@ -179,6 +188,75 @@ class ProductManager {
 
 const manager = new ProductManager("./products.json");
 
+console.log(manager.getProducts());
+
+module.exports = ProductManager;
+
+// manager.addProduct({
+//   title: "NANA Tomo 1",
+//   description: "Manga creado por Ai Yazawa",
+//   price: 480,
+//   thumbnail: "NANA-tomo1.jpg",
+//   code: "1111",
+//   stock: 5,
+// });
+// manager.addProduct({
+//   title: "Fullmetal Alchemist Tomo 1",
+//   description: "Manga creado por Hiromu Arakawa",
+//   price: 480,
+//   thumbnail: "FMA-tomo1.jpg",
+//   code: "7894",
+//   stock: 7,
+// });
+// manager.addProduct({
+//   title: "NANA Tomo 5",
+//   description: "Manga creado por Ai Yazawa",
+//   price: 480,
+//   thumbnail: "NANA-tomo5.jpg",
+//   code: "1125",
+//   stock: 8
+// });
+// manager.addProduct({
+//     title: "NANA Tomo 21",
+//     description: "Manga creado por Ai Yazawa",
+//     price: 480,
+//     thumbnail: "NANA-tomo21.jpg",
+//     code: "1221",
+//     stock: 1
+// });
+// manager.addProduct({
+//     title: "Jujutsu Kaisen Tomo 0",
+//     description: "Manga creado por Gege Akutami",
+//     price: 480,
+//     thumbnail: "Jujutsu-tomo0.jpg",
+//     code: "4568",
+//     stock: 15
+// });
+
+
+
+
+//agregando otro producto pero con un dato faltante - validacion de campo completado - OK
+// manager.addProduct({
+//     title: "NANA Tomo 2",
+//     description: "Manga creado por Ai Yazawa",
+//     thumbnail: "NANA-tomo2.jpg",
+//     code: "1112",
+//     stock: 10
+// });
+
+// //agregando otro producto pero codigo duplicado - validacion de codigo unico - OK
+// manager.addProduct({
+//     title: "NANA Tomo 3",
+//     description: "Manga creado por Ai Yazawa",
+//     price: 480,
+//     thumbnail: "NANA-tomo3.jpg",
+//     code: "1111",
+//     stock: 2
+// });
+
+
+
 //Consultando los productos existentes, si existen devuelve el arreglo de productos en JSON, de no existir aun datos, devuelve el arreglo vacio - OK
 // manager.getProducts();
 
@@ -205,68 +283,5 @@ const manager = new ProductManager("./products.json");
 
 
 
-// //agregando 3 productos - OK
-manager.addProduct({
-  title: "NANA Tomo 1",
-  description: "Manga creado por Ai Yazawa",
-  price: 480,
-  thumbnail: "NANA-tomo1.jpg",
-  code: "1111",
-  stock: 5,
-});
-manager.addProduct({
-  title: "Fullmetal Alchemist Tomo 1",
-  description: "Manga creado por Hiromu Arakawa",
-  price: 480,
-  thumbnail: "FMA-tomo1.jpg",
-  code: "7894",
-  stock: 7,
-});
-manager.addProduct({
-  title: "NANA Tomo 5",
-  description: "Manga creado por Ai Yazawa",
-  price: 480,
-  thumbnail: "NANA-tomo5.jpg",
-  code: "1125",
-  stock: 8
-});
-
-
-//agregando otro producto pero con un dato faltante - validacion de campo completado - OK
-// manager.addProduct({
-//     title: "NANA Tomo 2",
-//     description: "Manga creado por Ai Yazawa",
-//     thumbnail: "NANA-tomo2.jpg",
-//     code: "1112",
-//     stock: 10
-// });
-
-// //agregando otro producto pero codigo duplicado - validacion de codigo unico - OK
-// manager.addProduct({
-//     title: "NANA Tomo 3",
-//     description: "Manga creado por Ai Yazawa",
-//     price: 480,
-//     thumbnail: "NANA-tomo3.jpg",
-//     code: "1111",
-//     stock: 2
-// });
-
-// //Agregando varios productos para luego buscar por ID
-// manager.addProduct({
-//     title: "NANA Tomo 21",
-//     description: "Manga creado por Ai Yazawa",
-//     price: 480,
-//     thumbnail: "NANA-tomo21.jpg",
-//     code: "1221",
-//     stock: 1
-// });
-// manager.addProduct({
-//     title: "Jujutsu Kaisen Tomo 0",
-//     description: "Manga creado por Gege Akutami",
-//     price: 480,
-//     thumbnail: "Jujutsu-tomo0.jpg",
-//     code: "4568",
-//     stock: 15
-// });
 
 

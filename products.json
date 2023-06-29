@@ -25,5 +25,23 @@
     "thumbnail": "NANA-tomo5.jpg",
     "code": "1125",
     "stock": 8
+  },
+  {
+    "id": 4,
+    "title": "Jujutsu Kaisen Tomo 0",
+    "description": "Manga creado por Gege Akutami",
+    "price": 480,
+    "thumbnail": "Jujutsu-tomo0.jpg",
+    "code": "4568",
+    "stock": 15
+  },
+  {
+    "id": 5,
+    "title": "NANA Tomo 21",
+    "description": "Manga creado por Ai Yazawa",
+    "price": 480,
+    "thumbnail": "NANA-tomo21.jpg",
+    "code": "1221",
+    "stock": 1
   }
 ]
