@@ -1,21 +1,29 @@
 [
   {
     "id": 1,
-    "title": "NANA Tomo 1",
-    "description": "Manga creado por Ai Yazawa",
+    "title": "Fullmetal Alchemist Tomo 2",
+    "description": "Manga creado por Hiromu Arakawa",
     "price": 480,
-    "thumbnail": "NANA-tomo1.jpg",
-    "code": "1111",
-    "stock": 5
+    "thumbnail": [
+      "FMA-tomo2.jpg"
+    ],
+    "code": "7897",
+    "stock": 17,
+    "category": "Shounen",
+    "status": true
   },
   {
     "id": 2,
     "title": "Fullmetal Alchemist Tomo 1",
     "description": "Manga creado por Hiromu Arakawa",
     "price": 480,
-    "thumbnail": "FMA-tomo1.jpg",
-    "code": "7894",
-    "stock": 7
+    "thumbnail": [
+      "FMA-tomo1.jpg"
+    ],
+    "code": "7897",
+    "stock": 17,
+    "category": "Shounen",
+    "status": true
   },
   {
     "id": 3,
@@ -43,5 +51,60 @@
     "thumbnail": "NANA-tomo21.jpg",
     "code": "1221",
     "stock": 1
+  },
+  {
+    "id": 6,
+    "title": "Kimetsu no Yaiba Tomo 1",
+    "description": "Manga creado por Koyoharu Gotouge",
+    "price": 480,
+    "thumbnail": "KNY-tomo01.jpg",
+    "code": "9876",
+    "stock": 25,
+    "category": "Shounen",
+    "status": true
+  },
+  {
+    "id": 7,
+    "title": "Kimetsu no Yaiba Tomo 2",
+    "description": "Manga creado por Koyoharu Gotouge",
+    "price": 480,
+    "thumbnail": "KNY-tomo02.jpg",
+    "code": "5641",
+    "stock": 14,
+    "category": "Shounen",
+    "status": true
+  },
+  {
+    "id": 8,
+    "title": "Kimetsu no Yaiba Tomo 3",
+    "description": "Manga creado por Koyoharu Gotouge",
+    "price": 480,
+    "thumbnail": "KNY-tomo03.jpg",
+    "code": "5698",
+    "stock": 14,
+    "category": "Shounen",
+    "status": true
+  },
+  {
+    "id": 9,
+    "title": "Kimetsu no Yaiba Tomo 4",
+    "description": "Manga creado por Koyoharu Gotouge",
+    "price": 480,
+    "thumbnail": "KNY-tomo04.jpg",
+    "code": "5869",
+    "stock": 14,
+    "category": "Shounen",
+    "status": true
+  },
+  {
+    "id": 10,
+    "title": "Kimetsu no Yaiba Tomo 5",
+    "description": "Manga creado por Koyoharu Gotouge",
+    "price": 480,
+    "thumbnail": "KNY-tomo05.jpg",
+    "code": "7878",
+    "stock": 14,
+    "category": "Shounen",
+    "status": true
   }
 ]

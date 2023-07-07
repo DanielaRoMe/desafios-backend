@@ -13,57 +13,70 @@ class ProductManager {
       info.title === undefined ||
       info.description === undefined ||
       info.price === undefined ||
-      info.thumbnail === undefined ||
       info.code === undefined ||
-      info.stock === undefined
+      info.stock === undefined ||
+      info.category === undefined 
     ) {
       return console.log("ERROR: Todos los campos son obligatorios");
     }
 
-    const newProduct = {
+    const product = {
       title: info.title,
       description: info.description,
       price: info.price,
-      thumbnail: info.thumbnail,
+      thumbnail: [info.thumbnail],
       code: info.code,
       stock: info.stock,
+      category: info.category
     };    
 
-    fs.promises.readFile(this.path, "utf-8")
+    return fs.promises.readFile(this.path, "utf-8")
       .then((content) => {
 
         if (fs.existsSync(this.path)) {
           this.products = JSON.parse(content);
         }
 
-        const exist = this.products.find((el) => el.code === newProduct.code);
+        const exist = this.products.find((el) => el.code === product.code);
 
         if (!exist) {
           
           const assignId = { id: this.products.length + 1 } ;
+          const status = {status: true};
 
-          this.products.push({...assignId, ...newProduct})
+          const newProduct = ({...assignId, ...product, ...status});
+
+          this.products.push( newProduct );
           
           const newProductsString = JSON.stringify(this.products, null, 2);
 
-          fs.promises.writeFile(this.path, newProductsString)
+          return fs.promises.writeFile(this.path, newProductsString)
           .then(()=>{
             console.log(`Producto: ${newProduct.title} agregado con exito`);
+            return newProduct;
           })
+
         } else {
-          console.log(`El producto con codigp: ${newProduct.code} ya existe`);
+          const errorMsg = `El producto con codigo: ${product.code} ya existe`;
+          return errorMsg
         }
 
       })
       .catch(() => {
         const assignId = { id: this.products.length + 1 } ;
+        const status = {status: true};
 
-        this.products.push({...assignId, ...newProduct});
+        const newProduct = ({...assignId, ...product, ...status});
+
+        this.products.push( newProduct );
 
         const newProductsString = JSON.stringify(this.products, null, 2);
-        fs.promises.writeFile(this.path, newProductsString);
+        return fs.promises.writeFile(this.path, newProductsString)
+        .then(() =>{
+          return newProduct;
+        })
 
-        return console.log(`Producto: ${newProduct.title} agregado con exito`);
+        //return console.log(`Producto: ${product.title} agregado con exito`);
       });
 
   }
@@ -114,7 +127,7 @@ class ProductManager {
 
   updateProduct(id,updateField){
 
-    fs.promises.readFile(this.path, "utf-8")
+    return fs.promises.readFile(this.path, "utf-8")
     .then ((content) => {
 
       if (fs.existsSync(this.path)) {
@@ -124,42 +137,47 @@ class ProductManager {
       const productToUpdate = this.products.find(el => el.id === id)
 
       if(updateField.id){
-        console.log("No se puede actualizar el ID");
-        return
-      } else {
+        const errMsg = "No se puede actualizar el ID"
+        return errMsg
+      }
+
+        if (!productToUpdate) {
+          const errMsg = `No hay ningun producto con el ID: "${id}" registrado o el archivo "${this.path}" aun no ha sido creado`;
+          return errMsg
+        }
 
         const updatedProduct = {
           id: id,
           title: updateField.title || productToUpdate.title,
           description: updateField.description || productToUpdate.description,
           price: updateField.price || productToUpdate.price,
-          thumbnail: updateField.thumbnail || productToUpdate.thumbnail,
+          thumbnail: [updateField.thumbnail] || [productToUpdate.thumbnail],
           code: updateField.code || productToUpdate.code,
-          stock: updateField.stock || productToUpdate.stock
-  
+          stock: updateField.stock || productToUpdate.stock,
+          category: updateField.category || productToUpdate.category,
+          status: updateField.status || productToUpdate.status
         }
   
-        const index = this.products.findIndex(el => id === el.id);
+        const index = this.products.findIndex(el => el.id === id);
   
         this.products[index] = updatedProduct;
 
-        fs.promises.writeFile(this.path, JSON.stringify(this.products, null, 2))
-
-        console.log(`El producto con ID: "${id}" ha sido correctamente actualizado`);
-        return
-      }
+        return fs.promises.writeFile(this.path, JSON.stringify(this.products, null, 2))
+        .then(() => {
+          console.log(`El producto con ID: "${id}" ha sido correctamente actualizado`);
+          return updatedProduct
+        })
 
     })
     .catch((err) =>{
-      console.log(`No hay ningun producto con el ID: "${id}" registrado o el archivo "${this.path}" aun no ha sido creado`, err);
-
+      return err;
     })
 
   }
 
   deleteProduct(id){
 
-    fs.promises.readFile(this.path, "utf-8")
+    return fs.promises.readFile(this.path, "utf-8")
     .then((content) => {
       this.products = JSON.parse(content);
 
@@ -169,28 +187,29 @@ class ProductManager {
 
         this.products.splice(deleteProduct,1);
 
-        fs.promises.writeFile(this.path, JSON.stringify(this.products, null, 2))
+        return fs.promises.writeFile(this.path, JSON.stringify(this.products, null, 2))
         .then(()=>{
-          console.log(`El producto de ID: ${id} - ha sido eliminado correctamente`);
+          const msg = `El producto de ID: ${id} - ha sido eliminado correctamente`;
+          return msg;
         })
-
       } else {
-        console.log(`No existe ningun producto con ID: ${id}`);
+        const msg = `No existe ningun producto con ID: ${id} dentro del archivo "${this.path}" o el archivo aun no ha sido creado.`;
+         return msg;
       }
-      
     })
     .catch((err) => {
-      console.log(`Momentaneamente no existe ningun producto con el ID: "${id}" dentro del archivo "${this.path}" o el archivo aun no ha sido creado.`, err);
+      return err;
     })
-
+    
   }
 }
 
-const manager = new ProductManager("./products.json");
-
-console.log(manager.getProducts());
 
 module.exports = ProductManager;
+
+//const manager = new ProductManager("./products.json");
+
+//console.log(manager.getProducts())
 
 // manager.addProduct({
 //   title: "NANA Tomo 1",
