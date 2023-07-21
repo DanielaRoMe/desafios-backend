@@ -7,6 +7,7 @@ const { Router } = express;
 
 const productsRouter = Router();
 
+//Muestra todos los productos
 productsRouter.get('/', (req, res) => {
 
     const limit = req.query.limit;
@@ -42,6 +43,7 @@ productsRouter.get('/', (req, res) => {
 
 }); 
 
+//Muestra los productos filtrando por ID
 productsRouter.get('/:pId', (req, res) => {
     const pId = parseInt(req.params.pId);
 
@@ -56,6 +58,7 @@ productsRouter.get('/:pId', (req, res) => {
 
 })
 
+//Crear un nuevo producto
 productsRouter.post('/', (req, res) => {
     const product = req.body;
 
@@ -65,6 +68,9 @@ productsRouter.post('/', (req, res) => {
         if (typeof data == "string"){
             return res.status(400).json(data)
         } else {
+            
+            socketServer.emit('nuevoProducto', JSON.stringify(data))
+
             return res.status(201).json(data)
         }
     
@@ -75,6 +81,7 @@ productsRouter.post('/', (req, res) => {
 
 })
 
+//Actualizar un producto existente
 productsRouter.put('/:pId', (req, res) => {
     const pId = parseInt(req.params.pId);
     const updateProduct = req.body;
@@ -95,6 +102,7 @@ productsRouter.put('/:pId', (req, res) => {
 
 })
 
+//Borrar un producto segun ID
 productsRouter.delete('/:pId', (req, res) => {
     const pId = parseInt(req.params.pId);
 

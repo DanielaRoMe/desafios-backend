@@ -1,4 +1,4 @@
-const { log } = require("console");
+//const { log } = require("console");
 const fs = require("fs");
 
 class ProductManager {
@@ -76,7 +76,6 @@ class ProductManager {
           return newProduct;
         })
 
-        //return console.log(`Producto: ${product.title} agregado con exito`);
       });
 
   }
@@ -206,101 +205,4 @@ class ProductManager {
 
 
 module.exports = ProductManager;
-
-//const manager = new ProductManager("./products.json");
-
-//console.log(manager.getProducts())
-
-// manager.addProduct({
-//   title: "NANA Tomo 1",
-//   description: "Manga creado por Ai Yazawa",
-//   price: 480,
-//   thumbnail: "NANA-tomo1.jpg",
-//   code: "1111",
-//   stock: 5,
-// });
-// manager.addProduct({
-//   title: "Fullmetal Alchemist Tomo 1",
-//   description: "Manga creado por Hiromu Arakawa",
-//   price: 480,
-//   thumbnail: "FMA-tomo1.jpg",
-//   code: "7894",
-//   stock: 7,
-// });
-// manager.addProduct({
-//   title: "NANA Tomo 5",
-//   description: "Manga creado por Ai Yazawa",
-//   price: 480,
-//   thumbnail: "NANA-tomo5.jpg",
-//   code: "1125",
-//   stock: 8
-// });
-// manager.addProduct({
-//     title: "NANA Tomo 21",
-//     description: "Manga creado por Ai Yazawa",
-//     price: 480,
-//     thumbnail: "NANA-tomo21.jpg",
-//     code: "1221",
-//     stock: 1
-// });
-// manager.addProduct({
-//     title: "Jujutsu Kaisen Tomo 0",
-//     description: "Manga creado por Gege Akutami",
-//     price: 480,
-//     thumbnail: "Jujutsu-tomo0.jpg",
-//     code: "4568",
-//     stock: 15
-// });
-
-
-
-
-//agregando otro producto pero con un dato faltante - validacion de campo completado - OK
-// manager.addProduct({
-//     title: "NANA Tomo 2",
-//     description: "Manga creado por Ai Yazawa",
-//     thumbnail: "NANA-tomo2.jpg",
-//     code: "1112",
-//     stock: 10
-// });
-
-// //agregando otro producto pero codigo duplicado - validacion de codigo unico - OK
-// manager.addProduct({
-//     title: "NANA Tomo 3",
-//     description: "Manga creado por Ai Yazawa",
-//     price: 480,
-//     thumbnail: "NANA-tomo3.jpg",
-//     code: "1111",
-//     stock: 2
-// });
-
-
-
-//Consultando los productos existentes, si existen devuelve el arreglo de productos en JSON, de no existir aun datos, devuelve el arreglo vacio - OK
-// manager.getProducts();
-
-//Intentando borrar producto por ID - ID inexixtente - OK
-//manager.deleteProduct(10);
-
-//Borrando producto por ID - OK
-//manager.deleteProduct(2);
-
-//Actualizando producto cuyo ID no esta aun registrado - ERROR - OK
-//manager.updateProduct(10);
-
-//Actualizando producto cuyo ID si esta el JSON, pero el ID no se puede actualizar - ERROR - OK
-//manager.updateProduct(2,{id:5, price:500});
-
-//Actualizando producto cuyo ID si esta en el JSON - OK
-//manager.updateProduct(2,{price:900, stock:1});
-
-///Solo muetra el elemento con ID 2 - manga de FMA
-//manager.getProductById(2);
-
-//ERROR: No existe producto con ID 10
-//manager.getProductById(10); 
-
-
-
-
 

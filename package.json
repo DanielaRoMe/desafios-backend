@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/DanielaRoMe/desafios-backend#readme",
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "express-handlebars": "^7.1.0",
+    "socket.io": "^4.7.1"
   }
 }
